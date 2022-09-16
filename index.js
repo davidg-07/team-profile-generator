@@ -97,7 +97,7 @@ function createIntern() {
         name: 'school',
         mesasge: 'Please enter the intern\'s school.'
     }]).then(answers => {
-        data.manager = new Manager(answers.name, answers.managerId)
+        data.intern = new Intern(answers.name, answers.managerId)
     })
 };
 
