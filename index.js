@@ -23,9 +23,9 @@ function team() {
     ).then(
         answer => {
             if (answer.team === 'Add a new team manager') {
-                addManager();
+                createManager();
             } else {
-                console.log("Team complete!");
+                console.log("Team is complete!");
             }
         }
     )
@@ -42,7 +42,7 @@ function createManager() {
         name: 'managerId',
         mesasge: 'Please enter manager\'s id'
     }]).then(answers => {
-        data.manager = new Manager(answers.name, answers.managerId)
+        data.manager = new Manager(answers.name, answers.managerId, answers.email, answers.officenumber);
     },
         {
             type: 'input',
@@ -67,7 +67,7 @@ function createEngineer() {
         name: 'managerId',
         mesasge: 'Please enter Engineer\'s id'
     }]).then(answers => {
-        data.engineers.push(new Engineer(answers.name, answers.managerId))
+        data.engineers.push(new Engineer(answers.name, answers.id, answers.email, answers.github))
     },
         {
             type: 'input',
@@ -97,14 +97,14 @@ function createIntern() {
         name: 'school',
         mesasge: 'Please enter the intern\'s school.'
     }]).then(answers => {
-        data.intern = new Intern(answers.name, answers.managerId)
-    })
+        data.intern = new Intern(answers.name, answers.id, answers.school);
+    });
 };
 
 // this function will add the employees as they are made
 function writeToFile(fileName, data) {
     const htmldata = generateHtml(data);
-    fs.writeFileSync(fileName, htmldata, (err) => err ? console.log(err) : console.log('File Created!'));
+    fs.writeFileSync(fileName, htmldata, (err) => err ? console.log(err) : console.log('File has been created!'));
 };
 
 team();
