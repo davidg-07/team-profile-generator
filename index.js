@@ -9,7 +9,7 @@ const Intern = require('./Assests/Intern');
 const data = {
     manager: null,
     engineers: [],
-    interns: []
+    interns: null
 };
 
 //   will start the app
@@ -20,19 +20,15 @@ function team() {
             type: "list",
             choices: ['Add a new team manager', 'Finish building team']
         }
-    ).then(
-        answer => {
-            if (answer.team === 'Add a new team manager') {
-                createManager();
-            } else {
-                console.log("Team is complete!");
-            }
+    ).then(answers => {
+        if(answers.team === 'Add a new team manager') {
+            createManager();
         }
-    )
+    });
 };
 
 function createManager() {
-    ([{
+    inquirer.prompt([{ 
         type: 'input',
         name: 'name',
         mesasge: 'Who is the manager of this team?'
@@ -41,48 +37,49 @@ function createManager() {
         type: 'input',
         name: 'managerId',
         mesasge: 'Please enter manager\'s id'
-    }]).then(answers => {
-        data.manager = new Manager(answers.name, answers.managerId, answers.email, answers.officenumber);
     },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'Please enter the manager\'s email.'
-        },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: 'Please enter the manager\'s office number.'
-        })
+
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter the manager\'s email.'
+    },
+    {
+        type: 'input',
+        name: 'officeNumber',
+        message: 'Please enter the manager\'s office number.'
+    }]).then(answers => {
+        data.manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+    })
 }
 
 function createEngineer() {
-    ([{
+    inquirer.prompt([{
         type: 'input',
         name: 'name',
         mesasge: 'what\'s the name of the Engineer?'
     },
     {
         type: 'input',
-        name: 'managerId',
+        name: 'id',
         mesasge: 'Please enter Engineer\'s id'
-    }]).then(answers => {
-        data.engineers.push(new Engineer(answers.name, answers.id, answers.email, answers.github))
     },
-        {
-            type: 'input',
-            name: 'email',
-            message: 'Please enter the Engineer\'s email.'
-        },
-        {
-            type: 'input',
-            name: 'officeNumber',
-            message: 'Please enter the Engineer\'s Github username.'
-        })
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter the Engineer\'s email.'
+    },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Please enter the Engineer\'s Github username.'
+    }]).then(answers => {
+        data.engineers.push(new Engineer(answers.name, answers.id, answers.email, answers.github))  
+    });
 }
 
 function createIntern() {
-    ([{
+    inquirer.prompt([{
         type: 'input',
         name: 'id',
         mesasge: 'Please enter the intern\'s id.'
