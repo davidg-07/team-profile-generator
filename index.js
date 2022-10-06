@@ -104,7 +104,15 @@ function createEngineer() {
         name: 'github',
         message: 'Please enter the Engineer\'s Github username.'
     }]).then(answers => {
-        data.engineers.push(new Engineer(answers.name, answers.id, answers.email, answers.github))
+        data.engineers.push(new Engineer(answers.name, answers.id, answers.email, answers.github));
+        team.push(newEngineer);
+        if (answers.addEmployee === 'Add a new team member') {
+            addEmployee();
+        } else if(answers.addEmployee === 'Finish with team') {
+            console.log('Team is complete!');
+            writeToFile('index.html', team);
+            return;
+        }
     });
 }
 
@@ -125,6 +133,14 @@ function createIntern() {
         mesasge: 'Please enter the intern\'s school.'
     }]).then(answers => {
         data.intern = new Intern(answers.name, answers.id, answers.school);
+        team.push(newIntern);
+        if(answers.addEmployee === 'Add a new team member') {
+            addEmployee();
+        } else if(answers.addEmployee === 'Finish building team') {
+            console.log('Team is complete!');
+            writeToFile('index.html', team);
+            return;
+        }
     });
 };
 
