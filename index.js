@@ -6,11 +6,7 @@ const Manager = require('./Assests/Manager');
 const Engineer = require('./Assests/Engineer');
 const Intern = require('./Assests/Intern');
 
-const data = {
-    manager: null,
-    engineers: [],
-    interns: null
-};
+const data = [];
 
 //   will start the app
 function team() {
@@ -54,26 +50,28 @@ function createManager() {
         const newManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         data.push(newManager);
 
-        if (answers.addEmployee === 'Add a new team member!') {
-            newEmployee();
-        } else if (answers.addEmployee === 'Finish with team') {
-            console.log('Team is complete!');
-            writeToFile('index.html', team);
-        }
+        newEmployee();
+
+        // if (answers.newEmployee === 'Add a new team member!') {
+        //     newEmployee();
+        // } else if (answers.newEmployee === 'Finish with team') {
+        //     console.log('Team is complete!');
+        //     writeToFile('index.html', team);
+        // }
     });
 }
 
 function newEmployee() {
     inquirer.prompt([
         {
-            name: 'new employee',
+            name: 'newEmployee',
             type: 'list',
             choices: ['Add a engineer', 'Add an intern', 'Finish with team']
         }
     ]).then(answers => {
-        if (answers.addEmployee === 'Add a engineer') {
+        if (answers.newEmployee === 'Add a engineer') {
             createEngineer();
-        } else if (answers.addEmployee === 'Add an intern') {
+        } else if (answers.newEmployee === 'Add an intern') {
             createIntern();
         } else {
             console.log('Team is complete!');
@@ -106,9 +104,9 @@ function createEngineer() {
     }]).then(answers => {
         const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
         data.push(newEngineer);
-        if (answers.addEmployee === 'Add a new team member') {
-            addEmployee();
-        } else if (answers.addEmployee === 'Finish with team') {
+        if (answers.newEmployee === 'Add a new team member') {
+            newEmployee();
+        } else if (answers.newEmployee === 'Finish with team') {
             console.log('Team is complete!');
             writeToFile('index.html', team);
             return;
@@ -134,9 +132,9 @@ function createIntern() {
     }]).then(answers => {
         const newIntern = new Intern(answers.name, answers.id, answers.school);
         data.push(newIntern);
-        if (answers.addEmployee === 'Add a new team member') {
-            addEmployee();
-        } else if (answers.addEmployee === 'Finish building team') {
+        if (answers.newEmployee === 'Add a new team member') {
+            newEmployee();
+        } else if (answers.newEmployee === 'Finish building team') {
             console.log('Team is complete!');
             writeToFile('index.html', team);
             return;
