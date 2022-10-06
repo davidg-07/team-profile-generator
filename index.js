@@ -33,12 +33,12 @@ function createManager() {
     inquirer.prompt([{
         type: 'input',
         name: 'name',
-        mesasge: 'Who is the manager of this team?'
+        message: 'Who is the manager of this team?'
     },
     {
         type: 'input',
         name: 'managerId',
-        mesasge: 'Please enter manager\'s id'
+        message: 'Please enter manager\'s id'
     },
 
     {
@@ -51,8 +51,8 @@ function createManager() {
         name: 'officeNumber',
         message: 'Please enter the manager\'s office number.'
     }]).then(answers => {
-        data.manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
-        team.push(newManager);
+        const newManager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        data.push(newManager);
 
         if (answers.addEmployee === 'Add a new team member!') {
             newEmployee();
@@ -104,11 +104,11 @@ function createEngineer() {
         name: 'github',
         message: 'Please enter the Engineer\'s Github username.'
     }]).then(answers => {
-        data.engineers.push(new Engineer(answers.name, answers.id, answers.email, answers.github));
-        team.push(newEngineer);
+        const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+        data.push(newEngineer);
         if (answers.addEmployee === 'Add a new team member') {
             addEmployee();
-        } else if(answers.addEmployee === 'Finish with team') {
+        } else if (answers.addEmployee === 'Finish with team') {
             console.log('Team is complete!');
             writeToFile('index.html', team);
             return;
@@ -132,11 +132,11 @@ function createIntern() {
         name: 'school',
         mesasge: 'Please enter the intern\'s school.'
     }]).then(answers => {
-        data.intern = new Intern(answers.name, answers.id, answers.school);
-        team.push(newIntern);
-        if(answers.addEmployee === 'Add a new team member') {
+        const newIntern = new Intern(answers.name, answers.id, answers.school);
+        data.push(newIntern);
+        if (answers.addEmployee === 'Add a new team member') {
             addEmployee();
-        } else if(answers.addEmployee === 'Finish building team') {
+        } else if (answers.addEmployee === 'Finish building team') {
             console.log('Team is complete!');
             writeToFile('index.html', team);
             return;
