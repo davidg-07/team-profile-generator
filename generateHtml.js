@@ -1,5 +1,4 @@
 // these are nested functions in order to generate the html
-
 const generateTeam = team => {
 
     const generateManager = manager => {
@@ -53,7 +52,6 @@ const generateTeam = team => {
         </div>`;
     };
 
-
     const html = [];
 
     // here we add the team to the html array
@@ -75,7 +73,6 @@ const generateTeam = team => {
 
     return html.join("");
 };
-
 
 module.exports = team => {
     return `
