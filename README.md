@@ -27,28 +27,18 @@ THEN I exit the application, and the HTML is generated
  
 ## Table of Contents
 * [Installation](#installation)
-* [Usage](#usage)
-* [License](#license)
+* [Example](#example)
 * [Contributing](#contributing)
-* [Tests](#tests)
 * [Questions](#questions)
 
 ## Installation 
-The user should clone the repository from GitHub and download Node. This application also requires a file system and inquirer module. If testing is required, this application uses Jest. 
+Inquirer must be installed for user input. Jest must be installed in order to run the tests. Node_modules and package-lock will be installed aswell.
 
-## Usage 
-Use inquirer from your command line to answer questions about your project.
-View walk through video here - [Screencastify]()<br>
-<img src="./assets/image/samplepage.png">
-
-## License 
-This project is license under MIT
+## Example
+![Get Users](./img/screencapture-file-C-Users-david-BootCamp-Challenges-team-profile-generator-index-html-2022-10-17-15_12_04.pdf)
 
 ## Contributing 
 Contributors should read the installation section. 
-
-## Tests
-Run `npm test` to run Jest for tests on constructors. 
 
 ## Questions
 If you have any questions about this projects, please contact me directly at david.dmg17@gmail.com. You can view more of my projects at https://github.com/davidg-07.
