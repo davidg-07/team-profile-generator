@@ -75,7 +75,7 @@ function newEmployee() {
             createIntern();
         } else {
             console.log('Team is complete!');
-            writeToFile('index.html', team);
+            writeToFile('index.html', data);
         }
 
     });
@@ -104,13 +104,7 @@ function createEngineer() {
     }]).then(answers => {
         const newEngineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
         data.push(newEngineer);
-        if (answers.newEmployee === 'Add a new team member') {
-            newEmployee();
-        } else if (answers.newEmployee === 'Finish with team') {
-            console.log('Team is complete!');
-            writeToFile('index.html', team);
-            return;
-        }
+        newEmployee();
     });
 }
 
@@ -132,13 +126,7 @@ function createIntern() {
     }]).then(answers => {
         const newIntern = new Intern(answers.name, answers.id, answers.school);
         data.push(newIntern);
-        if (answers.newEmployee === 'Add a new team member') {
-            newEmployee();
-        } else if (answers.newEmployee === 'Finish building team') {
-            console.log('Team is complete!');
-            writeToFile('index.html', team);
-            return;
-        }
+       newEmployee();
     });
 };
 
